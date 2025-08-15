@@ -12,7 +12,7 @@ public class SeoController {
     @GetMapping("/compare")
     public String getQuery(@RequestParam String linkOne, @RequestParam String linkTwo) {
 
-        return "My domain: " + linkOne + "Competitor: " + linkTwo;
+        return "My domain: " + linkOne + '\n' + "Competitor: " + linkTwo;
     }
 
 
