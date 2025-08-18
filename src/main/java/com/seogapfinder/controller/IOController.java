@@ -1,5 +1,7 @@
 package com.seogapfinder.controller;
 
+import java.io.IOException;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.*;;
 
@@ -12,11 +14,17 @@ public class IOController {
 
         try {
             Document document = Jsoup.connect(url).get();
-            return document.toString();
+            webContents = document.title().trim()+'\n';
+            webContents += document.text().trim();
+            webContents = webContents.trim();
 
+        } catch (IllegalArgumentException e) {
+            
+            webContents += "\n" + e.getMessage();
 
-        } catch (Exception e) {
-            // TODO: handle exception
+        }
+        catch(IOException e ){
+            webContents += "\n" + e.getMessage();
         }
 
         return webContents;
